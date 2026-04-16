@@ -1,10 +1,10 @@
 <?php
 
-class Cidade 
+class Cidade
 {
-    public $id;
-    public $nome;
-    public $estado;
+    private $id;
+    private $nome;
+    private $estado;
 
     public function __construct(string $nome, string $estado)
     {
@@ -12,45 +12,47 @@ class Cidade
         $this->setEstado($estado);
     }
 
-    public function getId() : int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNome() : string
+    public function getNome(): string
     {
         return $this->nome;
     }
 
-    public function getEstado() : string
+    public function getEstado(): string
     {
         return $this->estado;
     }
 
-    public function setId($id)
+    public function setId(int $id)
     {
         if ($this->id === null) {
             $this->id = $id;
         }
     }
 
-    public function setNome ($nome)
+    public function setNome(string $nome)
     {
-        $nome = trim ($nome);
-        //Simples validação
+        $nome = trim($nome);
+
         if (empty($nome)) {
-            throw new Exception("O nome da cidade é obrigatório");
+            throw new Exception("O nome da cidade é obrigatório.");
         }
+
         $this->nome = $nome;
     }
 
-    public function setEstado ($estado)
+    public function setEstado(string $estado)
     {
         $estado = strtoupper(trim($estado));
-        //Simples validação
+
         if (strlen($estado) !== 2) {
-            throw new Exception("O estado deve conter exatamente 2 letras");
+            throw new Exception("O estado deve conter exatamente 2 letras.");
         }
+
         $this->estado = $estado;
     }
 }

@@ -8,9 +8,10 @@ class Database
     private function __construct()
     {
         $host = "localhost";
-        $dbname = "imobiliariajg";
+        $dbname = "imobiliariaJG";
         $username = "root";
         $password = "";
+
         try {
             $this->connection = new PDO(
                 "mysql:host=$host;dbname=$dbname;charset=utf8",
@@ -18,13 +19,14 @@ class Database
                 $password
             );
 
-            //Habilite exceções para erros
+            // Habilita exceções para erros
             $this->connection->setAttribute(
                 PDO::ATTR_ERRMODE,
                 PDO::ERRMODE_EXCEPTION
             );
+
         } catch (PDOException $e) {
-            die("Erro de conexão: " . $e->getMessage());
+            die("Erro na conexão: " . $e->getMessage());
         }
     }
 
@@ -33,6 +35,7 @@ class Database
         if (self::$instance === null) {
             self::$instance = new Database();
         }
+
         return self::$instance;
     }
 
